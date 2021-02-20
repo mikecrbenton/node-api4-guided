@@ -3,15 +3,26 @@ const shoutsModel = require("./shouts-model")
 
 const router = express.Router()
 
-// ASYNC AWAIT SYNTAX
+// ASYNC AWAIT SYNTAX=======================
+// Adding "await" before a function makes it
+// return a promise()  // also -> async function fooBar()
+
 router.get("/", async (req, res, next) => {
 	// shoutsModel.find()
 	// 	.then((data) => res.status(200).json(data))
+   //    .then((nextData) => anotherFunction() )
    // 	.catch((err) => next(err))
+
+   // CAN HAVE AS MANY TRY/CATCH AS NEEDED ( LIKE IF/ELSE ) 
    try {
+      // adding await before function allows asyncronous return
       const data = await shoutsModel.find()
-      //more promises in same format if needed
+      // more promises in same format if needed
+      // await anotherFunction()
+      // await anotherFunction()
+      // await anotherFunction()
       res.status(200).json(data)
+
    } catch(err){
       next(err)
    }
@@ -21,7 +32,7 @@ router.get("/:id", validateShoutId(), (req, res, next) => {
 	res.status(200).json(req.shout)
 })
 
-// ASYNC AWAIT
+// ASYNC AWAIT SYNTAX
 router.post("/", async (req, res, next) => {
    try{
       const data = await shoutsModel.add(req.body)
@@ -35,10 +46,10 @@ router.post("/", async (req, res, next) => {
 	// 	.catch((err) => next(err))
 })
 
-// ASYNC AWAIT
+// ASYNC AWAIT SYNTAX
 router.delete("/:id", validateShoutId(), async (req, res, next) => {
    try{
-      await Shouts.remove(req.params.id) // don't need to save to variable
+      await Shouts.remove(req.params.id) // **don't need to save to a variable
       res.status(204).end()
    }catch(err){
       next(err)
@@ -48,7 +59,7 @@ router.delete("/:id", validateShoutId(), async (req, res, next) => {
 	// 	.catch((err) => next(err))
 })
 
-//ASYNC AWAIT 
+//ASYNC AWAIT SYNTAX
 function validateShoutId() {
 	return async (req, res, next) => {
       try {

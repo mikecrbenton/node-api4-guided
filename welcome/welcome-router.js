@@ -9,3 +9,5 @@ router.get('/', (req,res) => {
 })
 
 module.exports = router
+
+// Good practice to have a fallback value for .env variables

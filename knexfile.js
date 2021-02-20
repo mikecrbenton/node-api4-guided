@@ -1,4 +1,5 @@
 module.exports = {
+
   development: {
     client: "sqlite3",
     useNullAsDefault: true,
@@ -17,6 +18,8 @@ module.exports = {
       directory: "./data/seeds",
     },
   },
+  //staging:{ }
+  
   production: {
     client: "sqlite3",
     useNullAsDefault: true,
